@@ -54,8 +54,29 @@ O bloco allprojects é onde você configura os repositórios e dependências usa
 
 A primeira seção na configuração da compilação aplica o plugin Android para * Gradle para esta compilação e torna o bloco android disponível para especificar * Opções de construção específicas para Android.
 
+<span style="color:blue">_O bloco android é onde você configura todas as opções de construção específicas do Android._</span><br>
+android { 
 
 
+
+
+}
+
+
+* compileSdkVersion(xx) { }
+
+* buildToolsVersion(xx) { }
+
+* defaultConfig { }
+
+* { }
+
+* { }
+
+
+* dependencies { }
+
+O bloco de dependências no arquivo de configuração de construção de nível de módulo * especifica as dependências necessárias para construir apenas o próprio módulo.
 
 Fontes:
 https://developer.android.com/studio/build#kts
