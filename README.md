@@ -9,7 +9,7 @@ No caso do Android, no Gradle são definidos várias coisas, como:
 * Para quais dispositivos o aplicativo pode ser executado
 * Compilar todo código e recursos para um executável
 * Declarar e gerenciar dependências de blibliotecas
-* ??Assinar o aplicativo??
+* Assinar o aplicativo, necessário para publicar o aplicativos na Google Play Store
 * Executar testes automatizados
 * etc
 
@@ -24,13 +24,9 @@ No Android existem pelo menos dois arquivos Gradle:
 * **build.gradle (Project:{nome do projeto})** - Usado para configurações de compilação do projeto como um todo
 * **build.gradle (Module:{nome do módulo})** - Usado para configurações de compilação do módulo específico.
 
-### Arquivo Gradle do projeto: build.gradle (Project:)
-Estrutura do arquivo
+### Estrutura de um arquivo Gradle do projeto: build.gradle (Project:)
 
-<br>
-
-**Estrutura de um arquivo Gradle de projeto**
-    
+Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, criado automaticamente pelo Android Studio.
 ```kotlin
 /*
 O bloco buildscript é onde você configura os repositórios e dependências do próprio Gradle.
@@ -65,45 +61,86 @@ buildscript {
 O bloco allprojects é onde você configura os repositórios e dependências usados por todos os módulos em seu projeto,
 como plug-ins ou bibliotecas de terceiros. No entanto, você deve configurar dependências específicas do módulo
 em cada arquivo build.gradle de nível de módulo.
-Para novos projetos, o Android Studio inclui o JCenter e o repositório Maven do Google por padrão,
-mas não configura nenhuma dependência (a menos que você selecione um modelo que exija algumas).
 */
 allprojects { 
+    repositories { 
 
+    }
+
+    dependencies {
+
+    }
+}
+
+/*
+DESCOBRIR PARA QUE SERVE ISSO
+*/
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
 ```
 
-### Arquivo Gradle do múdulo: build.gradle (Module:)
+### Estrutura de um arquivo Gradle de um módulo projeto: build.gradle (Module:)
 
+Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, criado automaticamente pelo Android Studio.
+```kotlin
+/*
+Neste bloco são especificados quais os plugins serão aplicados para este módulo específico.
+Neste caso, é aplicado o plugin de uma aplicação Android e do Kotlin para Android
+############ ALTERAR ISSO
 
-A primeira seção na configuração da compilação aplica o plugin Android para * Gradle para esta compilação e torna o bloco android disponível para especificar * Opções de construção específicas para Android.<br>
+A primeira seção na configuração da compilação aplica o plugin Android para Gradle para esta compilação
+e torna o bloco android disponível para especificar Opções de construção específicas para Android.
+*/
 plugins {
-
+    id 'com.android.application'
+    id 'kotlin-android'
 }
 
-<font style="color:blue">_O bloco android é onde você configura todas as opções de construção específicas do Android._</font><br>
-android { 
+android {
+    compileSdk 30
 
+    defaultConfig {
+        applicationId "com.exemple.tutotialgradle"
+        minSdk 20
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
 
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
 
-
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 
-* compileSdkVersion(xx) { }
+/*
+O bloco de dependências no arquivo Gradle do módulo especifica as
+dependências necessárias para construir apenas este módulo.
+*/
+dependencies {
 
-* buildToolsVersion(xx) { }
-
-* defaultConfig { }
-
-* { }
-
-* { }
-
-
-* dependencies { }
-
-O bloco de dependências no arquivo de configuração de construção de nível de módulo * especifica as dependências necessárias para construir apenas o próprio módulo.
+    implementation "androidx.core:core-ktx:$teste"
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+```
 
 Fontes:
 https://developer.android.com/studio/build#kts
