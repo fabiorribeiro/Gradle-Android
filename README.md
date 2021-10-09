@@ -24,7 +24,7 @@ No Android existem pelo menos dois arquivos Gradle:
 * **build.gradle (Project:{nome do projeto})** - Usado para configurações de compilação do projeto como um todo
 * **build.gradle (Module:{nome do módulo})** - Usado para configurações de compilação do módulo específico.
 
-### Estrutura de um arquivo Gradle do projeto: build.gradle (Project:)
+### Estrutura de um arquivo Gradle de projeto: "build.gradle (Project:)"
 
 Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, criado automaticamente pelo Android Studio.
 ```kotlin
@@ -80,7 +80,7 @@ task clean(type: Delete) {
 }
 ```
 
-### Estrutura de um arquivo Gradle de um módulo projeto: build.gradle (Module:)
+### Estrutura de um arquivo Gradle de um módulo: "build.gradle (Module:)"
 
 Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, criado automaticamente pelo Android Studio.
 ```kotlin
