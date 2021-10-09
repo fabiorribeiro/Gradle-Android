@@ -27,34 +27,61 @@ No Android existem pelo menos dois arquivos Gradle:
 ### Arquivo Gradle do projeto: build.gradle (Project:)
 Estrutura do arquivo
 
-* buildscript { }
+<br>
 
-O bloco buildscript é onde você configura os repositórios e dependências do próprio Gradle - ou seja, você não deve incluir dependências para seus módulos aqui. Por exemplo, este bloco inclui o plug-in Android para Gradle como uma dependência porque fornece as instruções adicionais de que o Gradle * precisa para construir módulos de aplicativos Android.
+**Estrutura de um arquivo Gradle de projeto**
+    
+```kotlin
+/*
+O bloco buildscript é onde você configura os repositórios e dependências do próprio Gradle.
+Por exemplo, este bloco inclui o plug-in Android para Gradle como uma dependência porque fornece
+as instruções adicionais de que o Gradle precisa para construir módulos de aplicativos Android.
+Você não deve incluir dependências para seus módulos aqui.
+*/
+buildscript {
+    /*
+    O bloco de repositórios configura os repositórios que o Gradle usa para pesquisar ou baixar as dependências.
+    O Gradle pré-configura o suporte para repositórios remotos, como JCenter, Maven Central e Ivy.
+    Você também pode usar repositórios locais ou definir seus próprios repositórios remotos.
+    O código a seguir define  que o Gradle deve usar os repositórios google() e mavenCentral()
+    para procurar suas dependências.
+    */
+    repositories { 
+        google()
+        mavenCentral()
+    }
 
-* ext { }
+    /*
+    O bloco de dependências configura as dependências que o Gradle precisa usar para criar seu projeto.
+    O código a seguir adiciona os plug-ins do Android e Kotlin para Gradle.
+    */
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
+    }
+}
 
-Bloco para criar variáveis que será usadas no Gradle
+/*
+O bloco allprojects é onde você configura os repositórios e dependências usados por todos os módulos em seu projeto,
+como plug-ins ou bibliotecas de terceiros. No entanto, você deve configurar dependências específicas do módulo
+em cada arquivo build.gradle de nível de módulo.
+Para novos projetos, o Android Studio inclui o JCenter e o repositório Maven do Google por padrão,
+mas não configura nenhuma dependência (a menos que você selecione um modelo que exija algumas).
+*/
+allprojects { 
 
-* repositories { }
-
-O bloco de repositórios configura os repositórios que o Gradle usa para pesquisar ou baixar as dependências. O Gradle pré-configura o suporte para repositórios remotos, como JCenter, Maven Central e Ivy. Você também pode usar repositórios locais ou definir seus próprios repositórios remotos. O código a seguir define JCenter como o repositório que o Gradle deve usar para procurar suas dependências.
-
-
-* dependencies { }
-
-O bloco de dependências configura as dependências que o Gradle precisa usar para criar seu projeto. A linha a seguir adiciona o plug-in do Android para Gradle versão 4.2.0 como uma dependência do classpath.
-
-* allprojects { }
-
-O bloco allprojects é onde você configura os repositórios e dependências usados por todos os módulos em seu projeto, como plug-ins ou bibliotecas de terceiros. No entanto, você deve configurar dependências específicas do módulo em cada arquivo build.gradle de nível de módulo. Para novos projetos, o Android Studio inclui o JCenter e o repositório Maven do Google por padrão, mas não configura nenhuma dependência (a menos que você selecione um modelo que exija algumas).
+}
+```
 
 ### Arquivo Gradle do múdulo: build.gradle (Module:)
 
-* plugins { }
 
-A primeira seção na configuração da compilação aplica o plugin Android para * Gradle para esta compilação e torna o bloco android disponível para especificar * Opções de construção específicas para Android.
+A primeira seção na configuração da compilação aplica o plugin Android para * Gradle para esta compilação e torna o bloco android disponível para especificar * Opções de construção específicas para Android.<br>
+plugins {
 
-<span style="color:blue">_O bloco android é onde você configura todas as opções de construção específicas do Android._</span><br>
+}
+
+<font style="color:blue">_O bloco android é onde você configura todas as opções de construção específicas do Android._</font><br>
 android { 
 
 
@@ -80,3 +107,13 @@ O bloco de dependências no arquivo de configuração de construção de nível 
 
 Fontes:
 https://developer.android.com/studio/build#kts
+
+
+    /*
+    Neste bloco, você pode criar variáveis que serão usadas nos arquivos Gradle.
+    No código abaixo, foi criada uma variál com a verão do plugin do kotlin
+    Note que na dependência do kotlin foi usada a variável com o número da versão criada no bloco 'ext{ }' acima
+    */
+    ext { 
+        kotlin_version = "1.4.32"
+    }
