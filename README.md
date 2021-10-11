@@ -92,7 +92,7 @@ plugins {
     id 'kotlin-android'
 }
 
-// EXPLICAÇÕES AQUI
+// Neste bloco, são definidas todas as especificações para compilar o projeto
 android {
 
     // A versão da API em que o aplicativo é realmente compilado
@@ -162,3 +162,4 @@ ext {
 ```
 Fontes:
 https://developer.android.com/studio/build#kts
+https://sodocumentation.net/android-gradle/topic/2161/configure-your-build-with-gradle
