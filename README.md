@@ -75,8 +75,8 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 ```
-*Obs.: É necessário conciliar a versão do plug-in do Adnroid com a [versão do Gradle](www.google.com). As versões correspondentes entre
-um e outro pode ser enontrado neste link: https://developer.android.com/studio/releases/gradle-plugin?hl=pt-br*
+*Obs.: É necessário conciliar a versão do plug-in do Adnroid com a [versão do Gradle](#atualizar-a-versão-do-gradle). As versões correspondentes entre
+um e outro podem ser enontrados neste link: https://developer.android.com/studio/releases/gradle-plugin?hl=pt-br*
 
 
 ### Estrutura de um arquivo Gradle de um módulo: "build.gradle (Module:)"
@@ -148,6 +148,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 ```
+
+# Atualizar a versão do Gradle
 
 ### Outros blocos interessantes que podem ser usados em um arquivo Gradle
 
