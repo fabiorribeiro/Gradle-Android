@@ -48,7 +48,7 @@ buildscript {
     // Como o Gradle é uma ferramente genérica para compilação, ele sozinho não sabe processar arquivos Kotlin
     // nem criar aplicativos para Android, por isso essas dependências são assenciais, pois informam quais os scripts
     // serão baixados para o Gradle conseguir compilar aplicativos para Android, no nosso caso, em Kotlin. Esses scripts
-    // fazem parte dos plug-ins do Gradle que são informadas abaixo quais devem ser baixadas.
+    // fazem parte dos plug-ins do Gradle que são informadas quais devem ser baixadas no código abaixo.
     // O código a seguir adiciona os plug-ins do Android e Kotlin para Gradle.
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.1"
@@ -79,7 +79,9 @@ task clean(type: Delete) {
 
 Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, criado automaticamente pelo Android Studio.
 ```Groovy
-// Neste bloco são especificados quais os plugins serão aplicados para este módulo específico.
+// Neste bloco são especificados quais os plugins serão aplicados para este módulo específico, para informar ao Gradle,
+// no nosso caso, como processar arquivos Kotlin e gerar aplicativos para Android.
+// Esses plug-ins são baixados das dependências informadas no arquivos Gradle do projeto (na seção anterior)
 // Neste caso, é aplicado o plugin de uma aplicação Android e do Kotlin para Android
 plugins {
     id 'com.android.application'
