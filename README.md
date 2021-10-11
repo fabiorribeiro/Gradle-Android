@@ -35,8 +35,9 @@ Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, cri
 // Você não deve incluir dependências para seus módulos aqui.
 buildscript {
 
-    // O bloco de repositórios configura os repositórios que o Gradle usa para pesquisar ou baixar as dependências para todo o projeto.
-    // Você também pode usar repositórios locais ou definir seus próprios repositórios remotos.
+    // O bloco de repositórios configura os repositórios que o Gradle usa para pesquisar ou baixar
+    // as dependências para todo o projeto. Você também pode usar repositórios locais ou definir
+    // seus próprios repositórios remotos.
     // O código a seguir define  que o Gradle deve usar os repositórios google() e mavenCentral()
     // para procurar suas dependências.
     repositories { 
@@ -74,6 +75,9 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 ```
+*Obs.: É necessário conciliar a versão do plug-in do Adnroid com a [versão do Gradle](www.google.com). As versões correspondentes entre
+um e outro pode ser enontrado neste link: https://developer.android.com/studio/releases/gradle-plugin?hl=pt-br*
+
 
 ### Estrutura de um arquivo Gradle de um módulo: "build.gradle (Module:)"
 
@@ -90,12 +94,27 @@ plugins {
 
 // EXPLICAÇÕES AQUI
 android {
+
+    // A versão da API em que o aplicativo é realmente compilado
     compileSdk 30
 
     defaultConfig {
+        
+        // 'applicationId' é o identificador exclusivo que o Android e o Google Play usam para identificar seu aplicativo.
+        // Por exemplo, não é possivel instalar dois aplicativos diferentes em um celuar com o mesmo applicationId,
+        // nem publicar na Google Play um aplicativo com um ID que já foi utilizado por outro aplicativo.
+        // Portanto é muito importante que ele seja único. Por isso é comum usarem o nome reverso do domínio
+        // das empresas para definir o ID do aplicativo. A lógica é que apenas uma empresa ou pessoa terá
+        //realmente a propriedade daquele domínio na web.
         applicationId "com.exemple.tutotialgradle"
+        
+        // Versão mínima que o aplicativo suporta.
         minSdk 20
+        
+        // Target informa em quais versões seu aplicativo foi testado. Se o 'minSdk' é 20 e o 'targetSdk' 30,
+        // significa que você testou seu aplicaivos das versões de 20 até 30
         targetSdk 30
+        
         versionCode 1
         versionName "1.0"
 
@@ -117,10 +136,10 @@ android {
     }
 }
 
-// O bloco de dependências no arquivo Gradle do módulo especifica as
-// dependências necessárias para construir apenas este módulo.
+// O bloco de dependências no arquivo Gradle do módulo especifica as dependências necessárias para construir
+// apenas este módulo. Elas são baixadas dos repositórios informados no arquivo Gradle do projeto.
 dependencies {
-    implementation "androidx.core:core-ktx:$teste"
+    implementation "androidx.core:core-ktx:1.6.0"
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
