@@ -27,41 +27,38 @@ No Android existem pelo menos dois arquivos Gradle:
 ### Estrutura de um arquivo Gradle de projeto: "build.gradle (Project:)"
 
 Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, criado automaticamente pelo Android Studio.
-```kotlin
-/*
-O bloco buildscript é onde você configura os repositórios e dependências do próprio Gradle.
-Por exemplo, este bloco inclui o plug-in Android para Gradle como uma dependência porque fornece
-as instruções adicionais de que o Gradle precisa para construir módulos de aplicativos Android.
-Você não deve incluir dependências para seus módulos aqui.
-*/
+```Groovy
+
+// O bloco buildscript é onde você configura os repositórios e dependências do próprio Gradle.
+// Por exemplo, este bloco inclui o plug-in Android para Gradle como uma dependência porque fornece
+// as instruções adicionais de que o Gradle precisa para construir módulos de aplicativos Android.
+// Você não deve incluir dependências para seus módulos aqui.
 buildscript {
-    /*
-    O bloco de repositórios configura os repositórios que o Gradle usa para pesquisar ou baixar as dependências.
-    O Gradle pré-configura o suporte para repositórios remotos, como JCenter, Maven Central e Ivy.
-    Você também pode usar repositórios locais ou definir seus próprios repositórios remotos.
-    O código a seguir define  que o Gradle deve usar os repositórios google() e mavenCentral()
-    para procurar suas dependências.
-    */
+
+    // O bloco de repositórios configura os repositórios que o Gradle usa para pesquisar ou baixar as dependências para todo o projeto.
+    // Você também pode usar repositórios locais ou definir seus próprios repositórios remotos.
+    // O código a seguir define  que o Gradle deve usar os repositórios google() e mavenCentral()
+    // para procurar suas dependências.
     repositories { 
         google()
         mavenCentral()
     }
 
-    /*
-    O bloco de dependências configura as dependências que o Gradle precisa usar para criar seu projeto.
-    O código a seguir adiciona os plug-ins do Android e Kotlin para Gradle.
-    */
+    // O bloco de dependências configura as dependências que o Gradle precisa usar para criar seu projeto.
+    // Como o Gradle é uma ferramente genérica para compilação, ele sozinho não sabe processar arquivos Kotlin
+    // nem criar aplicativos para Android, por isso essas dependências são assenciais, pois informam quais os scripts
+    // serão baixados para o Gradle conseguir compilar aplicativos para Android, no nosso caso, em Kotlin. Esses scripts
+    // fazem parte dos plug-ins do Gradle que são informadas abaixo quais devem ser baixadas.
+    // O código a seguir adiciona os plug-ins do Android e Kotlin para Gradle.
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
     }
 }
 
-/*
-O bloco allprojects é onde você configura os repositórios e dependências usados por todos os módulos em seu projeto,
-como plug-ins ou bibliotecas de terceiros. No entanto, você deve configurar dependências específicas do módulo
-em cada arquivo build.gradle de nível de módulo.
-*/
+// O bloco allprojects é onde você configura os repositórios e dependências usados por todos os módulos em seu projeto,
+// como plug-ins ou bibliotecas de terceiros. No entanto, você deve configurar dependências específicas do módulo
+// em cada arquivo build.gradle de nível de módulo.
 allprojects { 
     repositories { 
 
@@ -72,9 +69,7 @@ allprojects {
     }
 }
 
-/*
-DESCOBRIR PARA QUE SERVE ISSO
-*/
+// DESCOBRIR PARA QUE SERVE ISSO
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
@@ -83,20 +78,15 @@ task clean(type: Delete) {
 ### Estrutura de um arquivo Gradle de um módulo: "build.gradle (Module:)"
 
 Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, criado automaticamente pelo Android Studio.
-```kotlin
-/*
-Neste bloco são especificados quais os plugins serão aplicados para este módulo específico.
-Neste caso, é aplicado o plugin de uma aplicação Android e do Kotlin para Android
-############ ALTERAR ISSO
-
-A primeira seção na configuração da compilação aplica o plugin Android para Gradle para esta compilação
-e torna o bloco android disponível para especificar Opções de construção específicas para Android.
-*/
+```Groovy
+// Neste bloco são especificados quais os plugins serão aplicados para este módulo específico.
+// Neste caso, é aplicado o plugin de uma aplicação Android e do Kotlin para Android
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
 
+// EXPLICAÇÕES AQUI
 android {
     compileSdk 30
 
@@ -125,13 +115,9 @@ android {
     }
 }
 
-
-/*
-O bloco de dependências no arquivo Gradle do módulo especifica as
-dependências necessárias para construir apenas este módulo.
-*/
+// O bloco de dependências no arquivo Gradle do módulo especifica as
+// dependências necessárias para construir apenas este módulo.
 dependencies {
-
     implementation "androidx.core:core-ktx:$teste"
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
@@ -142,15 +128,14 @@ dependencies {
 }
 ```
 
+### Outros blocos interessantes que podem ser usados em um arquivo Gradle
+
+```Groovy
+// Neste bloco, você pode criar variáveis que serão usadas nos arquivos Gradle.
+// No código abaixo, foi criada uma variál com a verão do plugin do kotlin
+ext { 
+    kotlin_version = "1.4.32"
+}
+```
 Fontes:
 https://developer.android.com/studio/build#kts
-
-
-    /*
-    Neste bloco, você pode criar variáveis que serão usadas nos arquivos Gradle.
-    No código abaixo, foi criada uma variál com a verão do plugin do kotlin
-    Note que na dependência do kotlin foi usada a variável com o número da versão criada no bloco 'ext{ }' acima
-    */
-    ext { 
-        kotlin_version = "1.4.32"
-    }
