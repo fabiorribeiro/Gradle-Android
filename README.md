@@ -2,7 +2,6 @@
 Em desenvolvimento...*
 
 # Gradle Android
-## Para que serve e como utilizar o Gradle para Android
 
 ## O que é o Gradle
 O Gradle é uma ferramenta genérica de gerenciamento de compilação.
