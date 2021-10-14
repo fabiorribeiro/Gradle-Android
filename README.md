@@ -4,10 +4,10 @@ Em desenvolvimento...*
 # Gradle Android
 ## Para que serve e como utilizar o Gradle para Android
 
-### O que é o Gradle
+## O que é o Gradle
 O Gradle é uma ferramenta genérica de gerenciamento de compilação.
 
-### Gradle no Android
+## Gradle no Android
 No caso do Android, no Gradle são definidos várias coisas, como:
 * Para quais dispositivos o aplicativo pode ser executado
 * Compilar todo código e recursos para um executável
@@ -27,7 +27,7 @@ No Android existem pelo menos dois arquivos Gradle:
 * **build.gradle (Project:{nome do projeto})** - Usado para configurações de compilação do projeto como um todo
 * **build.gradle (Module:{nome do módulo})** - Usado para configurações de compilação do módulo específico.
 
-### Estrutura de um arquivo Gradle de projeto: "build.gradle (Project:)"
+## Estrutura de um arquivo Gradle de projeto: "build.gradle (Project:)"
 
 Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, criado automaticamente pelo Android Studio.
 ```Groovy
@@ -82,7 +82,7 @@ task clean(type: Delete) {
 um e outro podem ser enontrados neste link: https://developer.android.com/studio/releases/gradle-plugin?hl=pt-br*
 
 
-### Estrutura de um arquivo Gradle de um módulo: "build.gradle (Module:)"
+## Estrutura de um arquivo Gradle de um módulo: "build.gradle (Module:)"
 
 Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, criado automaticamente pelo Android Studio.
 ```Groovy
@@ -153,9 +153,9 @@ dependencies {
 }
 ```
 
-# Atualizar a versão do Gradle
+## Atualizar a versão do Gradle
 
-### Outros blocos interessantes que podem ser usados em um arquivo Gradle
+## Outros blocos interessantes que podem ser usados em um arquivo Gradle
 
 ```Groovy
 // Neste bloco, você pode criar variáveis que serão usadas nos arquivos Gradle.
@@ -164,6 +164,7 @@ ext {
     kotlin_version = "1.4.32"
 }
 ```
-Fontes:
-https://developer.android.com/studio/build#kts
+---
+#### Fontes
+https://developer.android.com/studio/build#kts<br>
 https://sodocumentation.net/android-gradle/topic/2161/configure-your-build-with-gradle
