@@ -86,13 +86,14 @@ Este exemplo é de um arquivo de um projeto Android sem nenhuma alteração, cri
 // Neste bloco são especificados quais os plugins serão aplicados para este módulo específico, para informar ao Gradle,
 // no nosso caso, como processar arquivos Kotlin e gerar aplicativos para Android.
 // Esses plug-ins são baixados das dependências informadas no arquivos Gradle do projeto (na seção anterior)
-// Neste caso, é aplicado o plugin de uma aplicação Android e do Kotlin para Android
+// Neste caso, é aplicado o plugin de uma aplicação Android e do Kotlin para Android, e torna o bloco android {}
+//disponível para especificar opções de compilação específicas do Android. 
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
 
-// Neste bloco, são definidas todas as especificações para compilar o projeto
+// Neste bloco, são definidas todas as especificações de compilação do Android
 android {
 
     // A versão da API em que o aplicativo é realmente compilado
