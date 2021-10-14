@@ -1,8 +1,11 @@
+*Documento destinado a explicar para que serve e como funciona o Gradle no Android.<br>
+Em desenvolvimento...*
+
 # Gradle Android
 ## Para que serve e como utilizar o Gradle para Android
 
 ### O que é o Gradle
-O Gradle é uma ferramenta ??de gerenciamento?? de compilação ...
+O Gradle é uma ferramenta genérica de gerenciamento de compilação.
 
 ### Gradle no Android
 No caso do Android, no Gradle são definidos várias coisas, como:
